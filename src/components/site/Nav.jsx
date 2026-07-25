@@ -6,8 +6,8 @@ import { PHONE, PHONE_HREF, EMAIL, ADDRESS, HOURS } from "@/lib/site-data";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About Us" },
   { to: "/products", label: "Products" },
+  { to: "/about", label: "About Us" },
   { to: "/contact", label: "Contact" },
 ];
 
