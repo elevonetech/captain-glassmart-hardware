@@ -66,7 +66,7 @@ export const products: Product[] = [
   { id: "p21", name: "Cement (50kg)", category: "Building Materials", categorySlug: "building-materials", variant: "OPC 42.5N", price: "KSh 650", image: catBuilding },
   { id: "p22", name: "6mm Clear Glass", category: "Glass Products", categorySlug: "glass-products", variant: "Per SQM", price: "KSh 950", image: catGlass },
   { id: "p23", name: "PVC Pipes (110mm)", category: "Plumbing & Electrical", categorySlug: "plumbing", variant: "6 metre length", price: "KSh 850", image: catPlumbing },
-  { id: "p24", name: "Aluminium Frame", category: "Aluminium", categorySlug: "aluminium", variant: "Standard profile", price: "KSh 1,800 /m", price_note: "", image: catAluminium } as Product,
+  { id: "p24", name: "Aluminium Frame", category: "Aluminium", categorySlug: "aluminium", variant: "Standard profile", price: "KSh 1,800 /m", image: catAluminium },
 ];
 
 export const filterCategories = [
