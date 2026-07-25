@@ -11,7 +11,7 @@ export const PHONE = "+254 712 345 678";
 export const PHONE_HREF = "tel:+254712345678";
 export const WHATSAPP = "https://wa.me/254712345678";
 export const EMAIL = "sales@captainglassmart.co.ke";
-export const ADDRESS = "123 Builder's Road, Industrial Area, Nairobi, Kenya";
+export const ADDRESS = "Mount kenya building ground floor, Nairobi, Kenya";
 export const HOURS = "Mon – Sat: 7:30 AM – 6:00 PM";
 
 export const categories = [
