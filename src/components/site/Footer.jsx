@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, MessageCircle, MapPin, Phone, Mail, Clock } from "lucide-react";
 import logo from "@/assets/captain-logo.png.asset.json";
 import { PHONE, EMAIL, ADDRESS, HOURS, WHATSAPP, categories } from "@/lib/site-data";
@@ -35,7 +36,11 @@ export function Footer() {
               { to: "/products", label: "Products" },
               { to: "/contact", label: "Contact" },
             ].map((l) => (
-              <li key={l.to}><Link to={l.to} className="hover:text-orange transition-colors">{l.label}</Link></li>
+              <li key={l.to}>
+                <Link to={l.to} className="hover:text-orange transition-colors">
+                  {l.label}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -44,7 +49,11 @@ export function Footer() {
           <h4 className="text-white text-sm font-bold tracking-widest uppercase mb-4">Categories</h4>
           <ul className="space-y-2 text-sm">
             {categories.slice(0, 6).map((c) => (
-              <li key={c.slug}><Link to="/products" className="hover:text-orange transition-colors">{c.name}</Link></li>
+              <li key={c.slug}>
+                <Link to="/products" className="hover:text-orange transition-colors">
+                  {c.name}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -52,10 +61,22 @@ export function Footer() {
         <div>
           <h4 className="text-white text-sm font-bold tracking-widest uppercase mb-4">Contact</h4>
           <ul className="space-y-3 text-sm">
-            <li className="flex gap-3"><MapPin className="h-4 w-4 text-orange shrink-0 mt-0.5" /><span>{ADDRESS}</span></li>
-            <li className="flex gap-3"><Phone className="h-4 w-4 text-orange shrink-0 mt-0.5" /><span>{PHONE}</span></li>
-            <li className="flex gap-3"><Mail className="h-4 w-4 text-orange shrink-0 mt-0.5" /><span>{EMAIL}</span></li>
-            <li className="flex gap-3"><Clock className="h-4 w-4 text-orange shrink-0 mt-0.5" /><span>{HOURS}</span></li>
+            <li className="flex gap-3">
+              <MapPin className="h-4 w-4 text-orange shrink-0 mt-0.5" />
+              <span>{ADDRESS}</span>
+            </li>
+            <li className="flex gap-3">
+              <Phone className="h-4 w-4 text-orange shrink-0 mt-0.5" />
+              <span>{PHONE}</span>
+            </li>
+            <li className="flex gap-3">
+              <Mail className="h-4 w-4 text-orange shrink-0 mt-0.5" />
+              <span>{EMAIL}</span>
+            </li>
+            <li className="flex gap-3">
+              <Clock className="h-4 w-4 text-orange shrink-0 mt-0.5" />
+              <span>{HOURS}</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -64,8 +85,12 @@ export function Footer() {
         <div className="container-x py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50">
           <p>© {new Date().getFullYear()} Captain Glassmart & Hardware. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-orange">Terms & Conditions</a>
-            <a href="#" className="hover:text-orange">Privacy Policy</a>
+            <a href="#" className="hover:text-orange">
+              Terms & Conditions
+            </a>
+            <a href="#" className="hover:text-orange">
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>

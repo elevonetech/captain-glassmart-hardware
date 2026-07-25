@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
+import React from "react";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 
-export function SiteLayout({ children }: { children: ReactNode }) {
+export function SiteLayout({ children }) {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Nav />

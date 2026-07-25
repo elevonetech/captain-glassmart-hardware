@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import React from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight, Award, Truck, Wrench, Headphones, ShieldCheck, Sparkles, MessageCircle, Phone } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { categories, products, WHATSAPP, PHONE_HREF } from "@/lib/site-data";
@@ -8,19 +9,7 @@ import aboutWorker from "@/assets/about-worker.jpg";
 import catGlass from "@/assets/cat-glass.jpg";
 import catBuilding from "@/assets/cat-building.jpg";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Captain Glassmart & Hardware — Building Quality. Delivering Trust." },
-      { name: "description", content: "Premium hardware, glass, aluminium, tools and finishing solutions for every construction and renovation project in Nairobi." },
-      { property: "og:title", content: "Captain Glassmart & Hardware" },
-      { property: "og:description", content: "Modern industrial. Bold by design. Built for quality." },
-    ],
-  }),
-  component: Home,
-});
-
-function Home() {
+export default function Home() {
   const featured = products.slice(0, 8);
 
   return (

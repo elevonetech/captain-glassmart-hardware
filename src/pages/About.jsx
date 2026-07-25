@@ -1,25 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import React from "react";
+import { Link } from "react-router-dom";
 import { ShieldCheck, Award, Users, Sparkles, Target, Heart, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import aboutStore from "@/assets/about-store.jpg";
 import aboutWorker from "@/assets/about-worker.jpg";
 import catGlass from "@/assets/cat-glass.jpg";
-import catTools from "@/assets/cat-tools.jpg";
 import catBuilding from "@/assets/cat-building.jpg";
 
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Captain Glassmart & Hardware" },
-      { name: "description", content: "Built on quality. Driven by trust. Captain Glassmart & Hardware is a reliable supplier of hardware, glass, fittings and finishing products in Nairobi." },
-      { property: "og:title", content: "About Captain Glassmart & Hardware" },
-      { property: "og:description", content: "Built on quality. Driven by trust." },
-    ],
-  }),
-  component: About,
-});
-
-function About() {
+export default function About() {
   return (
     <SiteLayout>
       {/* HERO */}

@@ -1,27 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Search, Award, Tag, Package, Headphones, MessageCircle, Grid3x3, List } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { products, filterCategories, WHATSAPP } from "@/lib/site-data";
 import heroImg from "@/assets/hero-hardware.jpg";
 
-export const Route = createFileRoute("/products")({
-  head: () => ({
-    meta: [
-      { title: "Products — Captain Glassmart & Hardware" },
-      { name: "description", content: "Browse our full catalogue: screws, locks, handles, drawer hardware, glass accessories, tools, adhesives, building materials and more." },
-      { property: "og:title", content: "Our Products — Captain Glassmart & Hardware" },
-      { property: "og:description", content: "Top quality. Best prices. Wide selection. Expert support." },
-    ],
-  }),
-  component: Products,
-});
-
-function Products() {
+export default function Products() {
   const [active, setActive] = useState("All Products");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("featured");
-  const [view, setView] = useState<"grid" | "list">("grid");
+  const [view, setView] = useState("grid");
 
   const filtered = useMemo(() => {
     let list = products.slice();
@@ -192,7 +179,7 @@ function Products() {
   );
 }
 
-function ProductCard({ p }: { p: typeof products[number] }) {
+function ProductCard({ p }) {
   return (
     <article className="group bg-white border border-border rounded-md overflow-hidden hover:border-orange transition-colors">
       <div className="aspect-square overflow-hidden bg-secondary">

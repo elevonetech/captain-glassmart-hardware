@@ -14,14 +14,7 @@ export const EMAIL = "sales@captainglassmart.co.ke";
 export const ADDRESS = "123 Builder's Road, Industrial Area, Nairobi, Kenya";
 export const HOURS = "Mon – Sat: 7:30 AM – 6:00 PM";
 
-export type Category = {
-  slug: string;
-  name: string;
-  blurb: string;
-  image: string;
-};
-
-export const categories: Category[] = [
+export const categories = [
   { slug: "building-materials", name: "Building Materials", blurb: "Cement, steel, aggregates & bulk supplies.", image: catBuilding },
   { slug: "glass-products", name: "Glass Products", blurb: "Clear, tinted, tempered & mirror glass.", image: catGlass },
   { slug: "aluminium", name: "Aluminium & Fabrication", blurb: "Profiles, frames & custom fabrication.", image: catAluminium },
@@ -32,17 +25,7 @@ export const categories: Category[] = [
   { slug: "plumbing", name: "Plumbing & Electrical", blurb: "PVC, fittings & electrical essentials.", image: catPlumbing },
 ];
 
-export type Product = {
-  id: string;
-  name: string;
-  category: string;
-  categorySlug: string;
-  variant: string;
-  price: string;
-  image: string;
-};
-
-export const products: Product[] = [
+export const products = [
   { id: "p1", name: "MDF Screws", category: "Screws & Fasteners", categorySlug: "tools", variant: "Box of 500 · 4x40mm", price: "KSh 850", image: catTools },
   { id: "p2", name: "Drawer Rails", category: "Drawer Hardware", categorySlug: "fittings", variant: "Ball-bearing · 450mm", price: "KSh 620 /pair", image: catFittings },
   { id: "p3", name: "Glass Catches", category: "Glass Accessories", categorySlug: "glass-products", variant: "Chrome · Magnetic", price: "KSh 180", image: catGlass },

@@ -1,25 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import React, { useState } from "react";
 import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { PHONE, PHONE_HREF, EMAIL, ADDRESS, HOURS, WHATSAPP } from "@/lib/site-data";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Captain Glassmart & Hardware" },
-      { name: "description", content: "Get in touch with Captain Glassmart & Hardware. Call, WhatsApp, email or send us a message — quotes and enquiries welcome." },
-      { property: "og:title", content: "Contact Captain Glassmart & Hardware" },
-      { property: "og:description", content: "Get a quote. Make an enquiry. Chat on WhatsApp." },
-    ],
-  }),
-  component: Contact,
-});
-
-function Contact() {
+export default function Contact() {
   const [sent, setSent] = useState(false);
 
-  const submit = (e: FormEvent) => {
+  const submit = (e) => {
     e.preventDefault();
     setSent(true);
     setTimeout(() => setSent(false), 4000);
@@ -125,7 +112,7 @@ function Contact() {
   );
 }
 
-function Field({ label, name, type = "text", placeholder }: { label: string; name: string; type?: string; placeholder?: string }) {
+function Field({ label, name, type = "text", placeholder }) {
   return (
     <div>
       <label className="text-xs uppercase tracking-widest text-white/60">{label}</label>
