@@ -8,10 +8,12 @@ import {
   MessageCircle,
   Grid3x3,
   List,
+  Image as ImageIcon,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Pagination } from "@/components/site/Pagination";
-import { products, filterCategories, WHATSAPP } from "@/lib/site-data";
+import { WHATSAPP } from "@/lib/site-data";
+import { useProducts } from "@/context/ProductContext";
 import productsHeros from "@/assets/products-heros.png";
 import heroImg from "@/assets/hero-hardware.jpg";
 
@@ -25,6 +27,7 @@ const HERO_FEATURES = [
 ];
 
 export default function Products() {
+  const { products, categories } = useProducts();
   const [active, setActive] = useState("All Products");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("featured");
@@ -45,7 +48,7 @@ export default function Products() {
         detail: p.category,
       })),
     ],
-    [],
+    [products],
   );
 
   useEffect(() => {
@@ -54,6 +57,14 @@ export default function Products() {
     }, 7000);
     return () => window.clearInterval(interval);
   }, [heroSlides.length]);
+
+  const filterCategories = useMemo(() => {
+    const list = ["All Products"];
+    categories.forEach((c) => {
+      if (!list.includes(c.name)) list.push(c.name);
+    });
+    return list;
+  }, [categories]);
 
   const filtered = useMemo(() => {
     let list = products.slice();
@@ -66,7 +77,7 @@ export default function Products() {
     }
     if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
     return list;
-  }, [active, query, sort]);
+  }, [products, active, query, sort]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
 
@@ -87,7 +98,11 @@ export default function Products() {
       {/* CATALOGUE */}
       <section className="py-12 md:py-16">
         <div className="container-x grid lg:grid-cols-[240px_1fr] gap-10">
-          <CategorySidebar active={active} setActive={setActive} />
+          <CategorySidebar
+            categories={filterCategories}
+            active={active}
+            setActive={setActive}
+          />
 
           <div>
             <Toolbar
@@ -217,7 +232,7 @@ function HeroCarousel({ heroSlides, heroIndex }) {
   );
 }
 
-function CategorySidebar({ active, setActive }) {
+function CategorySidebar({ categories, active, setActive }) {
   return (
     <aside className="space-y-6">
       <div>
@@ -225,7 +240,7 @@ function CategorySidebar({ active, setActive }) {
           Product Categories
         </h3>
         <ul className="border border-border rounded-md overflow-hidden bg-white">
-          {filterCategories.map((c) => (
+          {categories.map((c) => (
             <li key={c}>
               <button
                 onClick={() => setActive(c)}
@@ -314,13 +329,17 @@ function Toolbar({ query, setQuery, sort, setSort, view, setView, filtered, page
 function ProductCard({ p }) {
   return (
     <article className="group bg-white border border-border rounded-md overflow-hidden hover:border-orange transition-colors">
-      <div className="aspect-square overflow-hidden bg-secondary">
-        <img
-          src={p.image}
-          alt={p.name}
-          loading="lazy"
-          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+      <div className="aspect-square overflow-hidden bg-secondary flex items-center justify-center">
+        {p.image ? (
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <ImageIcon className="h-10 w-10 text-gray-300" />
+        )}
       </div>
       <div className="p-4">
         <div className="text-[10px] eyebrow text-orange">{p.category}</div>
@@ -346,7 +365,18 @@ function ProductCard({ p }) {
 function ProductListItem({ p }) {
   return (
     <div className="flex gap-4 border border-border rounded-md p-3 bg-white hover:border-orange transition-colors">
-      <img src={p.image} alt={p.name} loading="lazy" className="w-28 h-28 object-cover rounded" />
+      <div className="w-28 h-28 shrink-0 overflow-hidden rounded bg-secondary flex items-center justify-center border border-border">
+        {p.image ? (
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <ImageIcon className="h-8 w-8 text-gray-400" />
+        )}
+      </div>
       <div className="flex-1 min-w-0">
         <div className="text-[10px] eyebrow text-orange">{p.category}</div>
         <h3 className="text-sm font-bold text-charcoal">{p.name}</h3>
