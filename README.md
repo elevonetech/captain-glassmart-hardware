@@ -1,22 +1,28 @@
-# 🧱 Captain Glassmart & Hardware
+<div align="center">
 
-<p align="center">
-  <strong>Building Quality. Delivering Trust.</strong>
+# 🧱 <span style="color:#F97316;">Captain Glassmart</span> & Hardware
+
+<p>
+  <strong>Building <span style="color:#F97316;">Quality.</span> Delivering Trust.</strong>
 </p>
 
-<p align="center">
-  A modern digital showroom and product catalogue for Captain Glassmart & Hardware — showcasing quality hardware, glass, aluminium, furniture fittings, tools, adhesives, and finishing solutions.
+<p>
+  A modern digital showroom and product catalogue for Captain Glassmart & Hardware —
+  showcasing quality hardware, glass, aluminium, furniture fittings, tools,
+  adhesives, and finishing solutions.
 </p>
 
-<p align="center">
+<p>
   <a href="https://captain-glassmart-hardware.vercel.app">
-    <strong>🌐 View Live Website</strong>
+    <strong>🌐 View Live Website →</strong>
   </a>
 </p>
 
+</div>
+
 ---
 
-## ✦ About The Project
+## 🖤 About The Project
 
 **Captain Glassmart & Hardware** is a premium, responsive business website designed to digitally showcase a wide range of hardware products and materials.
 
@@ -24,11 +30,11 @@ The website transforms the traditional hardware shopping experience into a clean
 
 From furniture fittings and glass accessories to tools, adhesives, locks, handles, and finishing products — the platform brings everything together in one organised digital experience.
 
-> **Modern Industrial. Bold by Design. Built for Quality.**
+> 🟠 **Modern Industrial. Bold by Design. Built for Quality.**
 
 ---
 
-## ✨ Features
+## 🟠 Features
 
 - 🛠️ Premium industrial-inspired design
 - 🛍️ Product catalogue and discovery
@@ -57,9 +63,28 @@ From furniture fittings and glass accessories to tools, adhesives, locks, handle
 
 ---
 
-## 🎨 Brand Identity
-
-The visual identity is inspired by the strength, precision, and reliability of the hardware industry.
 
 
+## 🧱 Product Categories
 
+The platform provides a structured digital catalogue for products including:
+
+- 🔩 Screws & Fasteners
+- 🚪 Locks & Latches
+- 🪑 Furniture Fittings
+- 🛞 Drawer Rails & Hardware
+- 🪟 Glass Accessories
+- 🧰 Tools & Equipment
+- 🧴 Adhesives & Glues
+- 🎨 Finishing Materials
+- 🏗️ Building Materials
+- 🔧 General Hardware Supplies
+
+---
+
+## 🚀 Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/elevonetech/captain-glassmart-hardware.git
