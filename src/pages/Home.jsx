@@ -1,6 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Award, Truck, Wrench, Headphones, ShieldCheck, Sparkles, MessageCircle, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Award,
+  Truck,
+  Wrench,
+  Headphones,
+  ShieldCheck,
+  Sparkles,
+  MessageCircle,
+  Phone,
+} from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { categories, products, WHATSAPP, PHONE_HREF } from "@/lib/site-data";
 import heroImg from "@/assets/hero-hardware.jpg";
@@ -37,13 +47,17 @@ export default function Home() {
             Delivering Trust.
           </h1>
           <p className="mt-8 max-w-xl text-base md:text-lg text-white/70">
-            Captain Glassmart & Hardware supplies premium building materials, glass, aluminium fabrication, furniture fittings, tools, adhesives and finishing products — for the trades that build, repair and finish with confidence.
+            Captain Glassmart & Hardware supplies premium building materials, glass, aluminium
+            fabrication, furniture fittings, tools, adhesives and finishing products — for the
+            trades that build, repair and finish with confidence.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link to="/products" className="btn-orange btn-orange-hover">
               Explore Our Products <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link to="/contact" className="btn-ghost-light">Get a Quote</Link>
+            <Link to="/contact" className="btn-ghost-light">
+              Get a Quote
+            </Link>
           </div>
 
           <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-3xl border-t border-white/10 pt-8">
@@ -66,7 +80,11 @@ export default function Home() {
       <section className="bg-charcoal-2 text-white border-t border-white/5">
         <div className="container-x grid grid-cols-2 lg:grid-cols-4 divide-x divide-white/10">
           {[
-            { Icon: Award, t: "Quality Products", d: "We source the best materials for durability." },
+            {
+              Icon: Award,
+              t: "Quality Products",
+              d: "We source the best materials for durability.",
+            },
             { Icon: Wrench, t: "Expert Solutions", d: "Professional advice and craftsmanship." },
             { Icon: Truck, t: "Reliable Delivery", d: "On-time delivery for every project." },
             { Icon: Headphones, t: "Customer Support", d: "We're here to support you always." },
@@ -95,7 +113,10 @@ export default function Home() {
                 <span className="text-orange">All in one place.</span>
               </h2>
             </div>
-            <Link to="/products" className="text-sm font-semibold text-charcoal hover:text-orange inline-flex items-center gap-2">
+            <Link
+              to="/products"
+              className="text-sm font-semibold text-charcoal hover:text-orange inline-flex items-center gap-2"
+            >
               Browse all products <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -142,7 +163,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {featured.map((p) => (
-              <article key={p.id} className="group bg-white border border-border rounded-md overflow-hidden hover:border-orange transition-colors">
+              <article
+                key={p.id}
+                className="group bg-white border border-border rounded-md overflow-hidden hover:border-orange transition-colors"
+              >
                 <div className="aspect-square overflow-hidden bg-secondary">
                   <img
                     src={p.image}
@@ -189,7 +213,10 @@ export default function Home() {
               Building <span className="text-orange">Better</span> Together.
             </h2>
             <p className="mt-6 text-muted-foreground">
-              Captain Glassmart & Hardware is a leading supplier of quality building materials, finishing products, and hardware solutions. With a focus on reliability, craftsmanship and customer satisfaction, we help clients successfully complete construction, renovation and finishing projects of all sizes.
+              Captain Glassmart & Hardware is a leading supplier of quality building materials,
+              finishing products, and hardware solutions. With a focus on reliability, craftsmanship
+              and customer satisfaction, we help clients successfully complete construction,
+              renovation and finishing projects of all sizes.
             </p>
             <ul className="mt-6 space-y-3">
               {[
@@ -210,13 +237,35 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-4 relative">
-            <img src={aboutStore} alt="Store" loading="lazy" className="rounded-md aspect-[4/3] object-cover" />
-            <img src={catBuilding} alt="Materials" loading="lazy" className="rounded-md aspect-[4/3] object-cover" />
-            <img src={aboutWorker} alt="Craftsman" loading="lazy" className="rounded-md aspect-[4/3] object-cover col-span-1" />
-            <img src={catGlass} alt="Glass" loading="lazy" className="rounded-md aspect-[4/3] object-cover" />
+            <img
+              src={aboutStore}
+              alt="Store"
+              loading="lazy"
+              className="rounded-md aspect-[4/3] object-cover"
+            />
+            <img
+              src={catBuilding}
+              alt="Materials"
+              loading="lazy"
+              className="rounded-md aspect-[4/3] object-cover"
+            />
+            <img
+              src={aboutWorker}
+              alt="Craftsman"
+              loading="lazy"
+              className="rounded-md aspect-[4/3] object-cover col-span-1"
+            />
+            <img
+              src={catGlass}
+              alt="Glass"
+              loading="lazy"
+              className="rounded-md aspect-[4/3] object-cover"
+            />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl border border-border rounded-md px-6 py-4 text-center">
               <div className="text-hero text-4xl text-orange">10+</div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">Years of Experience</div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                Years of Experience
+              </div>
             </div>
           </div>
         </div>
@@ -227,13 +276,22 @@ export default function Home() {
         <div className="container-x py-14 md:py-16 grid md:grid-cols-[1fr_auto] items-center gap-8">
           <div>
             <h2 className="text-hero text-3xl md:text-4xl">Ready to start your project?</h2>
-            <p className="mt-2 text-white/85 max-w-xl">Get quality materials and expert solutions for your next construction or renovation project.</p>
+            <p className="mt-2 text-white/85 max-w-xl">
+              Get quality materials and expert solutions for your next construction or renovation
+              project.
+            </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-charcoal font-semibold px-6 py-3 rounded-md hover:bg-white/90 transition">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-white text-charcoal font-semibold px-6 py-3 rounded-md hover:bg-white/90 transition"
+            >
               Request a Quote <ArrowRight className="h-4 w-4" />
             </Link>
-            <a href={PHONE_HREF} className="inline-flex items-center gap-2 border border-white/40 text-white font-semibold px-6 py-3 rounded-md hover:bg-white/10 transition">
+            <a
+              href={PHONE_HREF}
+              className="inline-flex items-center gap-2 border border-white/40 text-white font-semibold px-6 py-3 rounded-md hover:bg-white/10 transition"
+            >
               <Phone className="h-4 w-4" /> Contact Us
             </a>
           </div>

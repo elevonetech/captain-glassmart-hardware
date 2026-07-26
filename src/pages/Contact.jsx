@@ -22,7 +22,8 @@ export default function Contact() {
             Let's talk <span className="text-orange">business.</span>
           </h1>
           <p className="mt-6 text-white/70 max-w-2xl">
-            Whether you need a bulk quote, product enquiry, or a specific hardware solution — our team is ready to help.
+            Whether you need a bulk quote, product enquiry, or a specific hardware solution — our
+            team is ready to help.
           </p>
         </div>
       </section>
@@ -32,7 +33,9 @@ export default function Contact() {
           {/* CONTACT INFO */}
           <div>
             <h2 className="text-hero text-3xl text-charcoal">Contact information</h2>
-            <p className="mt-2 text-muted-foreground">Reach us through any of the channels below.</p>
+            <p className="mt-2 text-muted-foreground">
+              Reach us through any of the channels below.
+            </p>
 
             <div className="mt-8 space-y-4">
               {[
@@ -50,7 +53,9 @@ export default function Contact() {
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs uppercase tracking-widest text-muted-foreground">{t}</div>
+                    <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                      {t}
+                    </div>
                     <div className="text-sm font-semibold text-charcoal mt-1">{d}</div>
                   </div>
                 </a>
@@ -70,7 +75,9 @@ export default function Contact() {
           {/* FORM */}
           <form onSubmit={submit} className="p-6 md:p-10 bg-charcoal text-white rounded-md">
             <h2 className="text-hero text-3xl">Send us a message</h2>
-            <p className="mt-2 text-white/60 text-sm">Fill in the form and we'll respond within one business day.</p>
+            <p className="mt-2 text-white/60 text-sm">
+              Fill in the form and we'll respond within one business day.
+            </p>
 
             <div className="mt-8 grid sm:grid-cols-2 gap-4">
               <Field label="Name" name="name" placeholder="Your full name" />
@@ -103,7 +110,9 @@ export default function Contact() {
             </div>
 
             {sent && (
-              <p className="mt-4 text-sm text-orange">Thanks — your message has been queued. We'll be in touch shortly.</p>
+              <p className="mt-4 text-sm text-orange">
+                Thanks — your message has been queued. We'll be in touch shortly.
+              </p>
             )}
           </form>
         </div>
