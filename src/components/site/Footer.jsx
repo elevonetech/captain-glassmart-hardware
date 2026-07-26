@@ -5,15 +5,24 @@ import {
   Instagram,
   Linkedin,
   MessageCircle,
+  Music2,
   MapPin,
   Phone,
   Mail,
   Clock,
 } from "lucide-react";
 import logo from "@/assets/captain-logo.png";
-import { PHONE, EMAIL, ADDRESS, HOURS, WHATSAPP, categories } from "@/lib/site-data";
+import { PHONE, EMAIL, ADDRESS, HOURS, WHATSAPP, TIKTOK, categories } from "@/lib/site-data";
 
 export function Footer() {
+  const socialLinks = [
+    { Icon: Facebook, href: "#", label: "Facebook" },
+    { Icon: Instagram, href: "#", label: "Instagram" },
+    { Icon: Linkedin, href: "#", label: "LinkedIn" },
+    { Icon: MessageCircle, href: WHATSAPP, label: "WhatsApp", external: true },
+    { Icon: Music2, href: TIKTOK, label: "TikTok", external: true },
+  ];
+
   return (
     <footer className="bg-charcoal text-white/70">
       {" "}
@@ -22,20 +31,19 @@ export function Footer() {
         <div className="lg:col-span-2">
           {" "}
           <img src={logo} alt="Captain Glassmart & Hardware" className="h-16 w-auto mb-4" />
-          ```
           <p className="text-sm max-w-sm">
             Your trusted partner for building materials, glass solutions, aluminium fabrication, and
             hardware supplies. Building quality. Delivering trust.
           </p>
           <div className="mt-6 flex items-center gap-3">
-            {[Facebook, Instagram, Linkedin, MessageCircle].map((Icon, i) => (
+            {socialLinks.map(({ Icon, href, label, external }) => (
               <a
-                key={i}
-                href={i === 3 ? WHATSAPP : "#"}
-                target={i === 3 ? "_blank" : undefined}
-                rel={i === 3 ? "noopener noreferrer" : undefined}
+                key={label}
+                href={href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
                 className="w-9 h-9 grid place-items-center rounded-full border border-white/15 hover:bg-orange hover:border-orange hover:text-white transition-colors"
-                aria-label="Social link"
+                aria-label={label}
               >
                 <Icon className="h-4 w-4" />
               </a>
