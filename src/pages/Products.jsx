@@ -76,21 +76,21 @@ export default function Products() {
   return (
     <SiteLayout>
       {/* HEADER */}
-      <section className="relative overflow-hidden text-white">
+      <section className="relative overflow-hidden text-white min-h-[520px] md:min-h-[560px]">
         <img
           src={heroImg}
           alt="Bright hardware showroom background"
           className="absolute inset-0 h-full w-full object-cover brightness-95"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/65 via-slate-900/30 to-slate-950/50" />
-        <div className="container-x relative py-10 md:py-14">
-          <div className="grid lg:grid-cols-[1.4fr_auto] gap-10 items-center">
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-slate-950/60" />
+        <div className="container-x relative py-12 md:py-16 flex items-center min-h-[520px] md:min-h-[560px]">
+          <div className="grid lg:grid-cols-[1.4fr_420px] gap-10 items-center w-full">
             <div className="max-w-xl">
               <p className="eyebrow flex items-center gap-3">
                 <span className="h-px w-10 bg-orange" />
                 Catalogue
               </p>
-              <h1 className="text-hero text-4xl md:text-5xl lg:text-6xl mt-4 leading-tight text-white">
+              <h1 className="text-hero text-4xl md:text-5xl lg:text-6xl mt-4 leading-tight text-balance text-white">
                 Explore <span className="text-orange">Products</span> built to perform.
               </h1>
               <p className="mt-4 max-w-xl text-white/80 text-base md:text-lg">
@@ -114,28 +114,43 @@ export default function Products() {
                   { Icon: Package, t: "Wide Selection" },
                   { Icon: Headphones, t: "Expert Support" },
                 ].map(({ Icon, t }) => (
-                  <div key={t} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3">
-                    <div className="w-10 h-10 grid place-items-center rounded-2xl border border-orange/30 text-orange bg-white/10">
+                  <div key={t} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 min-w-0">
+                    <div className="w-10 h-10 shrink-0 grid place-items-center rounded-2xl border border-orange/30 text-orange bg-white/10">
                       <Icon className="h-4 w-4" />
                     </div>
-                    <span>{t}</span>
+                    <span className="truncate">{t}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-xl">
-              <img
-                src={heroSlides[heroIndex].image}
-                alt={heroSlides[heroIndex].label}
-                className="h-[320px] w-full object-cover sm:h-[400px]"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent">
-                <div className="inline-flex items-center gap-2 rounded-full bg-orange/95 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-white">
-                  Featured
-                </div>
-                <div className="mt-4 text-xl font-semibold text-white">{heroSlides[heroIndex].label}</div>
-                <p className="mt-1 text-sm text-white/80">{heroSlides[heroIndex].detail}</p>
+            <div className="relative w-full lg:w-[420px] mx-auto shrink-0 h-[320px] sm:h-[400px] overflow-hidden">
+              <div
+                className="flex h-full transition-transform duration-700 ease-in-out"
+                style={{
+                  width: `${heroSlides.length * 100}%`,
+                  transform: `translateX(-${(heroIndex * 100) / heroSlides.length}%)`,
+                }}
+              >
+                {heroSlides.map((slide, i) => (
+                  <div
+                    key={i}
+                    className="h-full shrink-0"
+                    style={{ width: `${100 / heroSlides.length}%` }}
+                  >
+                    <img
+                      src={slide.image}
+                      alt={slide.label}
+                      className="h-full w-full object-cover"
+                      style={{
+                        maskImage:
+                          "radial-gradient(ellipse 85% 80% at center, black 55%, transparent 100%)",
+                        WebkitMaskImage:
+                          "radial-gradient(ellipse 85% 80% at center, black 55%, transparent 100%)",
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
