@@ -12,6 +12,7 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Pagination } from "@/components/site/Pagination";
 import { products, filterCategories, WHATSAPP } from "@/lib/site-data";
+import productsHeros from "@/assets/products-heros.png";
 import heroImg from "@/assets/hero-hardware.jpg";
 
 const ITEMS_PER_PAGE = 12;
@@ -22,6 +23,30 @@ export default function Products() {
   const [sort, setSort] = useState("featured");
   const [view, setView] = useState("grid");
   const [page, setPage] = useState(1);
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  const heroSlides = useMemo(
+    () => [
+      {
+        image: productsHeros,
+        label: "Product showcase",
+        detail: "Featured product visual from our catalogue.",
+      },
+      ...products.slice(0, 4).map((p) => ({
+        image: p.image,
+        label: p.name,
+        detail: p.category,
+      })),
+    ],
+    [],
+  );
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setHeroIndex((current) => (current + 1) % heroSlides.length);
+    }, 7000);
+    return () => window.clearInterval(interval);
+  }, [heroSlides.length]);
 
   const filtered = useMemo(() => {
     let list = products.slice();
@@ -51,40 +76,73 @@ export default function Products() {
   return (
     <SiteLayout>
       {/* HEADER */}
-      <section className="relative bg-charcoal text-white overflow-hidden">
+      <section className="relative overflow-hidden text-white">
         <img
           src={heroImg}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-25"
+          alt="Bright hardware showroom background"
+          className="absolute inset-0 h-full w-full object-cover brightness-95"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/90 to-charcoal/60" />
-        <div className="container-x relative py-16 md:py-24">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-10 items-end">
-            <div className="max-w-2xl">
-              <p className="eyebrow">Catalogue</p>
-              <h1 className="text-hero text-5xl md:text-7xl mt-4">
-                Our <span className="text-orange">Products.</span>
-              </h1>
-              <p className="mt-4 text-white/70">
-                High-quality building materials, finishing products and hardware solutions for every
-                construction and renovation need.
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/65 via-slate-900/30 to-slate-950/50" />
+        <div className="container-x relative py-10 md:py-14">
+          <div className="grid lg:grid-cols-[1.4fr_auto] gap-10 items-center">
+            <div className="max-w-xl">
+              <p className="eyebrow flex items-center gap-3">
+                <span className="h-px w-10 bg-orange" />
+                Catalogue
               </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
-              {[
-                { Icon: Award, t: "Top Quality", d: "Built to last" },
-                { Icon: Tag, t: "Best Prices", d: "Every budget" },
-                { Icon: Package, t: "Wide Selection", d: "One roof" },
-                { Icon: Headphones, t: "Expert Support", d: "You can trust" },
-              ].map(({ Icon, t, d }) => (
-                <div key={t} className="flex flex-col items-start gap-2">
-                  <div className="w-10 h-10 grid place-items-center rounded-md border border-orange/40 text-orange">
-                    <Icon className="h-4 w-4" />
+              <h1 className="text-hero text-4xl md:text-5xl lg:text-6xl mt-4 leading-tight text-white">
+                Explore <span className="text-orange">Products</span> built to perform.
+              </h1>
+              <p className="mt-4 max-w-xl text-white/80 text-base md:text-lg">
+                Discover premium hardware, glass, aluminium, fittings, tools and finishing materials with clear pricing and fast support.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-orange btn-orange-hover"
+                >
+                  Request a Quote
+                </a>
+                <a
+                  href="#products"
+                  className="btn-ghost-light"
+                >
+                  Browse Catalogue
+                </a>
+              </div>
+
+              <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-white/75">
+                {[
+                  { Icon: Award, t: "Top Quality" },
+                  { Icon: Tag, t: "Best Prices" },
+                  { Icon: Package, t: "Wide Selection" },
+                  { Icon: Headphones, t: "Expert Support" },
+                ].map(({ Icon, t }) => (
+                  <div key={t} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3">
+                    <div className="w-10 h-10 grid place-items-center rounded-2xl border border-orange/30 text-orange bg-white/10">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <span>{t}</span>
                   </div>
-                  <div className="text-sm font-bold uppercase tracking-wider">{t}</div>
-                  <div className="text-xs text-white/50">{d}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-xl">
+              <img
+                src={heroSlides[heroIndex].image}
+                alt={heroSlides[heroIndex].label}
+                className="h-[320px] w-full object-cover sm:h-[400px]"
+              />
+              <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent">
+                <div className="inline-flex items-center gap-2 rounded-full bg-orange/95 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-white">
+                  Featured
                 </div>
-              ))}
+                <div className="mt-4 text-xl font-semibold text-white">{heroSlides[heroIndex].label}</div>
+                <p className="mt-1 text-sm text-white/80">{heroSlides[heroIndex].detail}</p>
+              </div>
             </div>
           </div>
         </div>
