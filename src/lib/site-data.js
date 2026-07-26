@@ -12,7 +12,7 @@ export const PHONE_HREF = "tel:+254757773936";
 export const WHATSAPP = "https://wa.me/254757773936";
 export const TIKTOK = "https://www.tiktok.com/@joymax_hardware?_r=1&_t=ZS-98LyWvkKbQI";
 export const EMAIL = "captainhardware945@gmail.com";
-export const ADDRESS = "Cambodia Complex Building, Gikomba, Nairobi, Kenya";
+export const ADDRESS = "Mount kenya building ground floor,Nairobi, Kenya";
 export const HOURS = "Mon – Sat: 7:30 AM – 6:00 PM";
 
 export const categories = [

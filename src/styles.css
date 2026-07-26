@@ -84,6 +84,22 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Hide scrollbars globally but preserve scrolling behavior */
+  html,
+  body,
+  * {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none; /* WebKit */
+  }
+
   h1,
   h2,
   h3,
