@@ -19,6 +19,13 @@ import heroImg from "@/assets/hero-hardware.jpg";
 
 const ITEMS_PER_PAGE = 12;
 
+const HERO_FEATURES = [
+  { Icon: Award, t: "Top Quality" },
+  { Icon: Tag, t: "Best Prices" },
+  { Icon: Package, t: "Wide Selection" },
+  { Icon: Headphones, t: "Expert Support" },
+];
+
 export default function Products() {
   const { products, categories } = useProducts();
   const [active, setActive] = useState("All Products");
@@ -41,7 +48,7 @@ export default function Products() {
         detail: p.category,
       })),
     ],
-    [],
+    [products],
   );
 
   useEffect(() => {
@@ -74,7 +81,7 @@ export default function Products() {
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
 
-  // reset to page 1 whenever filters/search/sort change
+  // Reset to page 1 whenever filters/search/sort change
   useEffect(() => {
     setPage(1);
   }, [active, query, sort]);
@@ -86,173 +93,29 @@ export default function Products() {
 
   return (
     <SiteLayout>
-      {/* HEADER */}
-      <section className="relative overflow-hidden text-white">
-        <img
-          src={heroImg}
-          alt="Bright hardware showroom background"
-          className="absolute inset-0 h-full w-full object-cover brightness-95"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/65 via-slate-900/30 to-slate-950/50" />
-        <div className="container-x relative py-12 md:py-16 lg:py-20 max-w-5xl">
-          <div className="grid lg:grid-cols-[1.4fr_auto] gap-10 items-center">
-            <div className="max-w-xl">
-              <p className="eyebrow flex items-center gap-3">
-                <span className="h-px w-10 bg-orange" />
-                Catalogue
-              </p>
-              <h1 className="text-hero text-4xl md:text-5xl lg:text-6xl mt-4 leading-tight text-white">
-                Explore <span className="text-orange">Products</span> built to perform.
-              </h1>
-              <p className="mt-4 max-w-xl text-white/80 text-base md:text-lg">
-                Discover premium hardware, glass, aluminium, fittings, tools and finishing materials
-                with clear pricing and fast support.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn-orange btn-orange-hover"
-                >
-                  Request a Quote
-                </a>
-              </div>
-
-              <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-white/75">
-                {[
-                  { Icon: Award, t: "Top Quality" },
-                  { Icon: Tag, t: "Best Prices" },
-                  { Icon: Package, t: "Wide Selection" },
-                  { Icon: Headphones, t: "Expert Support" },
-                ].map(({ Icon, t }) => (
-                  <div
-                    key={t}
-                    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3"
-                  >
-                    <div className="w-10 h-10 grid place-items-center rounded-2xl border border-orange/30 text-orange bg-white/10">
-                      <Icon className="h-4 w-4" />
-                    </div>
-                    <span>{t}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white shadow-xl">
-              <img
-                src={heroSlides[heroIndex].image}
-                alt={heroSlides[heroIndex].label}
-                className="h-[320px] w-full object-cover sm:h-[400px]"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent">
-                <div className="inline-flex items-center gap-2 rounded-full bg-orange/95 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-white">
-                  Featured
-                </div>
-                <div className="mt-4 text-xl font-semibold text-white">
-                  {heroSlides[heroIndex].label}
-                </div>
-                <p className="mt-1 text-sm text-white/80">{heroSlides[heroIndex].detail}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection heroSlides={heroSlides} heroIndex={heroIndex} />
 
       {/* CATALOGUE */}
       <section className="py-12 md:py-16">
         <div className="container-x grid lg:grid-cols-[240px_1fr] gap-10">
-          {/* SIDEBAR */}
-          <aside className="space-y-6">
-            <div>
-              <h3 className="text-xs uppercase tracking-widest font-bold text-orange mb-3">
-                Product Categories
-              </h3>
-              <ul className="border border-border rounded-md overflow-hidden bg-white">
-                {filterCategories.map((c) => (
-                  <li key={c}>
-                    <button
-                      onClick={() => setActive(c)}
-                      className={`w-full text-left px-4 py-3 text-sm transition-colors border-b border-border last:border-0 ${
-                        active === c
-                          ? "bg-orange text-white font-semibold"
-                          : "hover:bg-secondary text-charcoal"
-                      }`}
-                    >
-                      {c}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <CategorySidebar
+            categories={filterCategories}
+            active={active}
+            setActive={setActive}
+          />
 
-            <div className="bg-secondary rounded-md p-5 border border-border">
-              <h4 className="text-sm font-bold text-charcoal">Need something specific?</h4>
-              <p className="text-xs text-muted-foreground mt-2">
-                We source special materials and custom solutions for your project.
-              </p>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-orange hover:text-charcoal"
-              >
-                <MessageCircle className="h-4 w-4" /> Request a Quote
-              </a>
-            </div>
-          </aside>
-
-          {/* MAIN */}
           <div>
-            {/* TOOLBAR */}
-            <div className="flex flex-wrap items-center gap-3 justify-between mb-6">
-              <p className="text-sm text-muted-foreground">
-                Showing{" "}
-                <span className="font-bold text-charcoal">
-                  {filtered.length === 0 ? 0 : (page - 1) * ITEMS_PER_PAGE + 1}
-                  {"–"}
-                  {Math.min(page * ITEMS_PER_PAGE, filtered.length)}
-                </span>{" "}
-                of {filtered.length} products
-              </p>
-              <div className="flex flex-wrap items-center gap-2">
-                <div className="relative">
-                  <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search products..."
-                    className="pl-9 pr-3 py-2 text-sm border border-border rounded-md bg-white w-56 focus:outline-none focus:border-orange"
-                  />
-                </div>
-                <select
-                  value={sort}
-                  onChange={(e) => setSort(e.target.value)}
-                  className="text-sm border border-border rounded-md bg-white px-3 py-2 focus:outline-none focus:border-orange"
-                >
-                  <option value="featured">Sort by: Featured</option>
-                  <option value="name">Sort by: Name</option>
-                </select>
-                <div className="flex border border-border rounded-md overflow-hidden bg-white">
-                  <button
-                    onClick={() => setView("grid")}
-                    className={`p-2 ${view === "grid" ? "bg-orange text-white" : "text-charcoal"}`}
-                    aria-label="Grid"
-                  >
-                    <Grid3x3 className="h-4 w-4" />
-                  </button>
-                  <button
-                    onClick={() => setView("list")}
-                    className={`p-2 ${view === "list" ? "bg-orange text-white" : "text-charcoal"}`}
-                    aria-label="List"
-                  >
-                    <List className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Toolbar
+              query={query}
+              setQuery={setQuery}
+              sort={sort}
+              setSort={setSort}
+              view={view}
+              setView={setView}
+              filtered={filtered}
+              page={page}
+            />
 
-            {/* GRID */}
             {view === "grid" ? (
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 {paginated.map((p) => (
@@ -262,39 +125,7 @@ export default function Products() {
             ) : (
               <div className="space-y-3">
                 {paginated.map((p) => (
-                  <div
-                    key={p.id}
-                    className="flex gap-4 border border-border rounded-md p-3 bg-white hover:border-orange transition-colors"
-                  >
-                    <div className="w-28 h-28 shrink-0 overflow-hidden rounded bg-secondary flex items-center justify-center border border-border">
-                      {p.image ? (
-                        <img
-                          src={p.image}
-                          alt={p.name}
-                          loading="lazy"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <ImageIcon className="h-8 w-8 text-gray-400" />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[10px] eyebrow text-orange">{p.category}</div>
-                      <h3 className="text-sm font-bold text-charcoal">{p.name}</h3>
-                      <p className="text-xs text-muted-foreground">{p.variant}</p>
-                      <div className="mt-3 flex items-center justify-between">
-                        <span className="text-sm font-bold">{p.price}</span>
-                        <a
-                          href={`${WHATSAPP}?text=Hi, I'd like to enquire about ${encodeURIComponent(p.name)}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 text-xs font-semibold text-orange hover:text-charcoal"
-                        >
-                          <MessageCircle className="h-3.5 w-3.5" /> Enquire
-                        </a>
-                      </div>
-                    </div>
-                  </div>
+                  <ProductListItem key={p.id} p={p} />
                 ))}
               </div>
             )}
@@ -310,6 +141,188 @@ export default function Products() {
         </div>
       </section>
     </SiteLayout>
+  );
+}
+
+function HeroSection({ heroSlides, heroIndex }) {
+  return (
+    <section className="relative overflow-hidden text-white min-h-[520px] md:min-h-[560px]">
+      <img
+        src={heroImg}
+        alt="Bright hardware showroom background"
+        className="absolute inset-0 h-full w-full object-cover brightness-95"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-slate-900/40 to-slate-950/60" />
+
+      <div className="container-x relative py-12 md:py-16 flex items-center min-h-[520px] md:min-h-[560px]">
+        <div className="grid lg:grid-cols-[1.4fr_420px] gap-10 items-center w-full">
+          <HeroCopy />
+          <HeroCarousel heroSlides={heroSlides} heroIndex={heroIndex} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HeroCopy() {
+  return (
+    <div className="max-w-xl">
+      <p className="eyebrow flex items-center gap-3">
+        <span className="h-px w-10 bg-orange" />
+        Catalogue
+      </p>
+      <h1 className="text-hero text-4xl md:text-5xl lg:text-6xl mt-4 leading-tight text-balance text-white">
+        Explore <span className="text-orange">Products</span> built to perform.
+      </h1>
+      <p className="mt-4 max-w-xl text-white/80 text-base md:text-lg">
+        Discover premium hardware, glass, aluminium, fittings, tools and finishing
+        materials with clear pricing and fast support.
+      </p>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn-orange btn-orange-hover">
+          Request a Quote
+        </a>
+      </div>
+
+      <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-white/75">
+        {HERO_FEATURES.map(({ Icon, t }) => (
+          <div
+            key={t}
+            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 min-w-0"
+          >
+            <div className="w-10 h-10 shrink-0 grid place-items-center rounded-2xl border border-orange/30 text-orange bg-white/10">
+              <Icon className="h-4 w-4" />
+            </div>
+            <span className="truncate">{t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function HeroCarousel({ heroSlides, heroIndex }) {
+  const edgeFadeStyle = {
+    maskImage: "radial-gradient(ellipse 85% 80% at center, black 55%, transparent 100%)",
+    WebkitMaskImage:
+      "radial-gradient(ellipse 85% 80% at center, black 55%, transparent 100%)",
+  };
+
+  return (
+    <div className="relative w-full lg:w-[420px] mx-auto shrink-0 h-[320px] sm:h-[400px] overflow-hidden">
+      <div
+        className="flex h-full transition-transform duration-700 ease-in-out"
+        style={{
+          width: `${heroSlides.length * 100}%`,
+          transform: `translateX(-${(heroIndex * 100) / heroSlides.length}%)`,
+        }}
+      >
+        {heroSlides.map((slide, i) => (
+          <div key={i} className="h-full shrink-0" style={{ width: `${100 / heroSlides.length}%` }}>
+            <img
+              src={slide.image}
+              alt={slide.label}
+              className="h-full w-full object-cover"
+              style={edgeFadeStyle}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CategorySidebar({ categories, active, setActive }) {
+  return (
+    <aside className="space-y-6">
+      <div>
+        <h3 className="text-xs uppercase tracking-widest font-bold text-orange mb-3">
+          Product Categories
+        </h3>
+        <ul className="border border-border rounded-md overflow-hidden bg-white">
+          {categories.map((c) => (
+            <li key={c}>
+              <button
+                onClick={() => setActive(c)}
+                className={`w-full text-left px-4 py-3 text-sm transition-colors border-b border-border last:border-0 ${
+                  active === c
+                    ? "bg-orange text-white font-semibold"
+                    : "hover:bg-secondary text-charcoal"
+                }`}
+              >
+                {c}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="bg-secondary rounded-md p-5 border border-border">
+        <h4 className="text-sm font-bold text-charcoal">Need something specific?</h4>
+        <p className="text-xs text-muted-foreground mt-2">
+          We source special materials and custom solutions for your project.
+        </p>
+        <a
+          href={WHATSAPP}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-orange hover:text-charcoal"
+        >
+          <MessageCircle className="h-4 w-4" /> Request a Quote
+        </a>
+      </div>
+    </aside>
+  );
+}
+
+function Toolbar({ query, setQuery, sort, setSort, view, setView, filtered, page }) {
+  return (
+    <div className="flex flex-wrap items-center gap-3 justify-between mb-6">
+      <p className="text-sm text-muted-foreground">
+        Showing{" "}
+        <span className="font-bold text-charcoal">
+          {filtered.length === 0 ? 0 : (page - 1) * ITEMS_PER_PAGE + 1}
+          {"–"}
+          {Math.min(page * ITEMS_PER_PAGE, filtered.length)}
+        </span>{" "}
+        of {filtered.length} products
+      </p>
+      <div className="flex flex-wrap items-center gap-2">
+        <div className="relative">
+          <Search className="h-4 w-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search products..."
+            className="pl-9 pr-3 py-2 text-sm border border-border rounded-md bg-white w-56 focus:outline-none focus:border-orange"
+          />
+        </div>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="text-sm border border-border rounded-md bg-white px-3 py-2 focus:outline-none focus:border-orange"
+        >
+          <option value="featured">Sort by: Featured</option>
+          <option value="name">Sort by: Name</option>
+        </select>
+        <div className="flex border border-border rounded-md overflow-hidden bg-white">
+          <button
+            onClick={() => setView("grid")}
+            className={`p-2 ${view === "grid" ? "bg-orange text-white" : "text-charcoal"}`}
+            aria-label="Grid"
+          >
+            <Grid3x3 className="h-4 w-4" />
+          </button>
+          <button
+            onClick={() => setView("list")}
+            className={`p-2 ${view === "list" ? "bg-orange text-white" : "text-charcoal"}`}
+            aria-label="List"
+          >
+            <List className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -346,5 +359,40 @@ function ProductCard({ p }) {
         </div>
       </div>
     </article>
+  );
+}
+
+function ProductListItem({ p }) {
+  return (
+    <div className="flex gap-4 border border-border rounded-md p-3 bg-white hover:border-orange transition-colors">
+      <div className="w-28 h-28 shrink-0 overflow-hidden rounded bg-secondary flex items-center justify-center border border-border">
+        {p.image ? (
+          <img
+            src={p.image}
+            alt={p.name}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <ImageIcon className="h-8 w-8 text-gray-400" />
+        )}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="text-[10px] eyebrow text-orange">{p.category}</div>
+        <h3 className="text-sm font-bold text-charcoal">{p.name}</h3>
+        <p className="text-xs text-muted-foreground">{p.variant}</p>
+        <div className="mt-3 flex items-center justify-between">
+          <span className="text-sm font-bold">{p.price}</span>
+          <a
+            href={`${WHATSAPP}?text=Hi, I'd like to enquire about ${encodeURIComponent(p.name)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-orange hover:text-charcoal"
+          >
+            <MessageCircle className="h-3.5 w-3.5" /> Enquire
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
