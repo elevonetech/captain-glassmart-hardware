@@ -105,12 +105,6 @@ export default function Products() {
                 >
                   Request a Quote
                 </a>
-                <a
-                  href="#products"
-                  className="btn-ghost-light"
-                >
-                  Browse Catalogue
-                </a>
               </div>
 
               <div className="mt-8 grid grid-cols-2 gap-3 text-sm text-white/75">
