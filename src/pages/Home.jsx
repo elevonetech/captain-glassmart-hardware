@@ -36,7 +36,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/85 to-charcoal/20" />
         <div className="absolute inset-0 grid-bg opacity-60" />
 
-        <div className="container-x relative py-24 md:py-36 lg:py-44 max-w-5xl">
+        <div className="container-x relative py-12 md:py-16 lg:py-20 max-w-5xl">
           <p className="eyebrow flex items-center gap-3">
             <span className="h-px w-10 bg-orange" />
             Modern Industrial Hardware

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { MapPin, Phone, Mail, Clock, MessageCircle, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Music2, Send } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { PHONE, PHONE_HREF, EMAIL, ADDRESS, HOURS, WHATSAPP } from "@/lib/site-data";
+import { PHONE, PHONE_HREF, EMAIL, ADDRESS, HOURS, WHATSAPP, TIKTOK } from "@/lib/site-data";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -43,6 +43,7 @@ export default function Contact() {
                 { Icon: Phone, t: "Call Us", d: PHONE, href: PHONE_HREF },
                 { Icon: Mail, t: "Email Us", d: EMAIL, href: `mailto:${EMAIL}` },
                 { Icon: Clock, t: "Business Hours", d: HOURS },
+                { Icon: Music2, t: "Follow TikTok", d: "@joymax_hardware", href: TIKTOK },
               ].map(({ Icon, t, d, href }) => (
                 <a
                   key={t}
