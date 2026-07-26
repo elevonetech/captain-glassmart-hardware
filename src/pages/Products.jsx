@@ -83,7 +83,7 @@ export default function Products() {
           className="absolute inset-0 h-full w-full object-cover brightness-95"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/65 via-slate-900/30 to-slate-950/50" />
-        <div className="container-x relative py-10 md:py-14">
+        <div className="container-x relative py-12 md:py-16 lg:py-20 max-w-5xl">
           <div className="grid lg:grid-cols-[1.4fr_auto] gap-10 items-center">
             <div className="max-w-xl">
               <p className="eyebrow flex items-center gap-3">
@@ -94,7 +94,8 @@ export default function Products() {
                 Explore <span className="text-orange">Products</span> built to perform.
               </h1>
               <p className="mt-4 max-w-xl text-white/80 text-base md:text-lg">
-                Discover premium hardware, glass, aluminium, fittings, tools and finishing materials with clear pricing and fast support.
+                Discover premium hardware, glass, aluminium, fittings, tools and finishing materials
+                with clear pricing and fast support.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
@@ -114,7 +115,10 @@ export default function Products() {
                   { Icon: Package, t: "Wide Selection" },
                   { Icon: Headphones, t: "Expert Support" },
                 ].map(({ Icon, t }) => (
-                  <div key={t} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <div
+                    key={t}
+                    className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3"
+                  >
                     <div className="w-10 h-10 grid place-items-center rounded-2xl border border-orange/30 text-orange bg-white/10">
                       <Icon className="h-4 w-4" />
                     </div>
@@ -134,7 +138,9 @@ export default function Products() {
                 <div className="inline-flex items-center gap-2 rounded-full bg-orange/95 px-4 py-2 text-[11px] uppercase tracking-[0.25em] text-white">
                   Featured
                 </div>
-                <div className="mt-4 text-xl font-semibold text-white">{heroSlides[heroIndex].label}</div>
+                <div className="mt-4 text-xl font-semibold text-white">
+                  {heroSlides[heroIndex].label}
+                </div>
                 <p className="mt-1 text-sm text-white/80">{heroSlides[heroIndex].detail}</p>
               </div>
             </div>
